@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="./favicon.ico" />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="actionRowsWrap">
+        <div class="actionRow">
+          <label>
+            AvatarName
+            <input id="avatarName" type="text" />
+          </label>
+
+          <label>
+            VoiceID
+            <input id="voiceID" type="text" />
+          </label>
+
+          <button id="newBtn">New</button>
+          <button id="startBtn">Start</button>
+          <button id="closeBtn">Close</button>
+        </div>
+
+        <div class="actionRow">
+          <label>
+            Message
+            <input id="taskInput" type="text" />
+          </label>
+          <button id="talkBtn">Talk</button>
+          <button id="repeatBtn">Repeat</button>
+        </div>
+      </div>
+
+      <p id="status"></p>
+
+      <div class="videoSectionWrap">
+        <div class="videoWrap">
+          <video id="mediaElement" class="videoEle show" autoplay></video>
+          <canvas id="canvasElement" class="videoEle hide"></canvas>
+        </div>
+
+        <div class="actionRow switchRow hide" id="bgCheckboxWrap">
+          <div class="switchWrap">
+            <span>Remove background</span>
+            <label class="switch">
+              <input type="checkbox" id="removeBGCheckbox" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <label>
+            Background (CSS)
+            <input
+              type="text"
+              id="bgInput"
+              value='url("https://app.heygen.com/icons/heygen/logo_hori_text_light_bg.svg") center / contain no-repeat'
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
