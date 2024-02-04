@@ -14,7 +14,7 @@
    git clone https://github.com/HeyGen-Official/StreamingAvatar.git
    ```
 
-2. Open the `api.json` file and replace `'YourApiKey'` with your API key:
+2. Open the `index.js` file and replace `'YourApiKey'` with your API key:
 
    ```
    "apiKey": "YourApiKey";
