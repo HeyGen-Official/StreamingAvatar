@@ -119,6 +119,36 @@ async function repeatHandler() {
   updateStatus(statusElement, 'Task sent successfully');
 }
 
+async function talkHandler() {
+  if (!sessionInfo) {
+    updateStatus(statusElement, 'Please create a connection first');
+    return;
+  }
+  const prompt = taskInput.value; // Using the same input for simplicity
+  if (prompt.trim() === '') {
+    alert('Please enter a prompt for the LLM');
+    return;
+  }
+
+  updateStatus(statusElement, 'Talking to LLM... please wait');
+
+  try {
+    const text = await talkToOpenAI(prompt)
+
+    if (text) {
+      // Send the AI's response to Heygen's streaming.task API
+      const resp = await repeat(sessionInfo.session_id, text);
+      updateStatus(statusElement, 'LLM response sent successfully');
+    } else {
+      updateStatus(statusElement, 'Failed to get a response from AI');
+    }
+  } catch (error) {
+    console.error('Error talking to AI:', error);
+    updateStatus(statusElement, 'Error talking to AI');
+  }
+}
+
+
 // when clicking the "Close" button, close the connection
 async function closeConnectionHandler() {
   if (!sessionInfo) {
@@ -149,6 +179,8 @@ document.querySelector('#newBtn').addEventListener('click', createNewSession);
 document.querySelector('#startBtn').addEventListener('click', startAndDisplaySession);
 document.querySelector('#repeatBtn').addEventListener('click', repeatHandler);
 document.querySelector('#closeBtn').addEventListener('click', closeConnectionHandler);
+document.querySelector('#talkBtn').addEventListener('click', talkHandler);
+
 
 // new session
 async function newSession(quality, avatar_name, voice_id) {
@@ -224,6 +256,27 @@ async function handleICE(session_id, candidate) {
   } else {
     const data = await response.json();
     return data;
+  }
+}
+
+async function talkToOpenAI(prompt) {
+  const response = await fetch(`http://localhost:3000/openai/complete`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ prompt }),
+  });
+  if (response.status === 500) {
+    console.error('Server error');
+    updateStatus(
+      statusElement,
+      'Server Error. Please make sure to set the openai api key',
+    );
+    throw new Error('Server error');
+  } else {
+    const data = await response.json();
+    return data.text;
   }
 }
 
