@@ -19,15 +19,21 @@
    ```
    "apiKey": "YourApiKey";
    ```
+3. (optional) Open the `server.js` file and set your OpenAI API key to use talk mode:
+   ```
+   const openai = new OpenAI({
+     apiKey: "<your openai api key>",
+   });
+   ```
 
-3. open a terminal in the folder and then install the express and run the server.js:
+4. open a terminal in the folder and then install the express and run the server.js:
 
    ```
    npm install express
    node server.js
    ```
 
-4. you will see `App is listening on port 3000!`.
+5. you will see `App is listening on port 3000!`.
 
 ## Use the Demo
 
