@@ -32,7 +32,7 @@ function onMessage(event) {
 async function createNewSession() {
   updateStatus(statusElement, 'Creating new session... please wait');
 
-  const avatar = avatarName.value;
+  const avatar = avatarID.value;
   const voice = voiceID.value;
 
   // call the new interface to get the server's offer SDP and ICE server to create a new RTCPeerConnection
