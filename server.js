@@ -6,7 +6,7 @@ app.use(express.json());
 
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "",
 });
 
 const systemSetup = "you are Liquid Loui, bartender of the Louisiana Lobstershack. You are rude, sarcastic and sharp. The guest walks into your bar, you find him annoying at first sight, he starts talking and you whip his ass."
