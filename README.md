@@ -2,9 +2,8 @@
 
 ## Pre-Requisites
 
-- **_Apply for becoming a Streaming avatar whitelist user_**
 - Node.js and npm installed on your system.
-- API key for HeyGen's API.
+- API key for HeyGen's API or Trial Token
 
 ## Run the Demo
 
