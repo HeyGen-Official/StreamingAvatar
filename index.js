@@ -36,27 +36,11 @@ async function createNewSession() {
   const voice = voiceID.value;
 
   // call the new interface to get the server's offer SDP and ICE server to create a new RTCPeerConnection
-  sessionInfo = await newSession('high', avatar, voice);
+  sessionInfo = await newSession('low', avatar, voice);
   const { sdp: serverSdp, ice_servers2: iceServers } = sessionInfo;
 
   // Create a new RTCPeerConnection
   peerConnection = new RTCPeerConnection({ iceServers: iceServers });
-
-  // When ICE candidate is available, send to the server
-  peerConnection.onicecandidate = ({ candidate }) => {
-    console.log('Received ICE candidate:', candidate);
-    if (candidate) {
-      handleICE(sessionInfo.session_id, candidate.toJSON());
-    }
-  };
-
-  // When ICE connection state changes, display the new state
-  peerConnection.oniceconnectionstatechange = (event) => {
-    updateStatus(
-      statusElement,
-      `ICE connection state changed to: ${peerConnection.iceConnectionState}`,
-    );
-  };
 
   // When audio and video streams are received, display them in the video element
   peerConnection.ontrack = (event) => {
@@ -93,9 +77,28 @@ async function startAndDisplaySession() {
   const localDescription = await peerConnection.createAnswer();
   await peerConnection.setLocalDescription(localDescription);
 
+ // When ICE candidate is available, send to the server
+  peerConnection.onicecandidate = ({ candidate }) => {
+    console.log('Received ICE candidate:', candidate);
+    if (candidate) {
+      handleICE(sessionInfo.session_id, candidate.toJSON());
+    }
+  };
+
+  // When ICE connection state changes, display the new state
+  peerConnection.oniceconnectionstatechange = (event) => {
+    updateStatus(
+      statusElement,
+      `ICE connection state changed to: ${peerConnection.iceConnectionState}`,
+    );
+  };
+
+
+
   // Start session
   await startSession(sessionInfo.session_id, localDescription);
-  updateStatus(statusElement, 'Session started successfully');
+
+   updateStatus(statusElement, 'Session started successfully');
 }
 
 const taskInput = document.querySelector('#taskInput');
