@@ -1,6 +1,6 @@
 # Streaming Avatar Demo
 
-## Introducation
+## Introduction
 
 This HeyGen Streaming Avatar demo is a starting point from which developers can adapt and build streaming sessions into their own websites and experiences.
 
