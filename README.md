@@ -1,5 +1,9 @@
 # Streaming Avatar Demo
 
+NEW: We have an SDK now! The SDK is an NPM package that you can easily add to your website and use for Streaming Avatar functionality. Please check it out at https://www.npmjs.com/package/@heygen/streaming-avatar
+
+We also have an example React app demonstrating the SDK's functionality. That is located at: https://github.com/HeyGen-Official/StreamingAvatarTSDemo
+
 ## Introduction
 
 This HeyGen Streaming Avatar demo is a starting point from which developers can adapt and build streaming sessions into their own websites and experiences.
@@ -61,7 +65,6 @@ You can check how many active sessions you have open with the List Sessions endp
 
 ## Using the Demo
 
-0. Make sure you are whitelisted to use the HeyGen's Streaming avatar API.
 1. Open the web browser and enter the `http://localhost:3000`to start the demo.
 2. Click the "New" button to create a new session. The status updates will be displayed on the screen.
 3. After the session is created successfully, click the "Start" button to start streaming the avatar.
