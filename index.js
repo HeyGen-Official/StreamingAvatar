@@ -98,6 +98,12 @@ async function startAndDisplaySession() {
   // Start session
   await startSession(sessionInfo.session_id, localDescription);
 
+  var receivers = peerConnection.getReceivers();
+  
+  receivers.forEach((receiver) => {
+    receiver.jitterBufferTarget = 500
+  });
+
    updateStatus(statusElement, 'Session started successfully');
 }
 
